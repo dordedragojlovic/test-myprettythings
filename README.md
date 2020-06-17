@@ -3,9 +3,10 @@
 ## Setup
 
 1. Clone repository
-2. `yarn install`
-3. `yarn dev`
-4. Application is running on [localhost:3000](http://localhost:3000/)
+1. `yarn install`
+1. Generate GraphQL schema types by `yarn gen:types`
+1. `yarn dev`
+1. Application is running on [localhost:3000](http://localhost:3000/)
 
 ## Backend
 
