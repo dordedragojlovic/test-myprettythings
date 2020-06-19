@@ -1,0 +1,19 @@
+name: Continuous Integration
+
+on: [pull_request]
+
+jobs:
+  build_and_test:
+    name: Install deps and Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          yarn install
+      - name: Run Lint
+        run: |
+          yarn lint
+      - name: Run Tests
+        run: |
+          yarn test
