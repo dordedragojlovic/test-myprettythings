@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-micro';
+import { gql } from 'apollo-server';
 
 export default gql`
   type Query {
@@ -6,11 +6,11 @@ export default gql`
   }
 
   type Mutation {
-    createPurchase(purchase: PurchaseInput): PurchaseStatus!
+    createPurchase(purchase: PurchaseInput!): PurchaseStatus!
   }
 
   type Subscription {
-    purchasePaid(id: ID): PurchasePaidConfirmation!
+    purchasePaid(id: ID!): Boolean!
   }
 
   type PurchaseStatus {

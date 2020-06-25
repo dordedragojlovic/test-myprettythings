@@ -1,4 +1,4 @@
-import { PURCHASES } from 'lib/graphql-server/database/collections';
+import { PURCHASES } from '../../database/collections';
 import { beforeEach, describe, expect, it } from '@jest/globals';
 import { mutate, query, TEST_DATABASE } from './helpers';
 import { gql } from 'apollo-server-core';
@@ -16,7 +16,7 @@ describe('purchase resolvers', () => {
       };
       const res = await mutate({
         mutation: gql`
-          mutation CREATE_PURCHASE($purchase: PurchaseInput) {
+          mutation CREATE_PURCHASE($purchase: PurchaseInput!) {
             createPurchase(purchase: $purchase) {
               id
               confirmed

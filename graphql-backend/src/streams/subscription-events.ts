@@ -1,0 +1,1 @@
+export const PURCHASE_PAID = 'PURCHASE_PAID';
