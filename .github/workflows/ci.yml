@@ -3,17 +3,22 @@ name: Continuous Integration
 on: [pull_request]
 
 jobs:
-  build_and_test:
+  build_and_test_backend:
     name: Install deps and Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: |
+          cd graphql-backend
           yarn install
+          yarn gen:types
+          yarn build
       - name: Run Lint
         run: |
+          cd graphql-backend
           yarn lint
       - name: Run Tests
         run: |
+          cd graphql-backend
           yarn test
