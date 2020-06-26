@@ -14,7 +14,7 @@ const CreditCard = ({ form }: { form: FormStateHandler }) => {
   return (
     <Container>
       <CVC>
-        <input value={form.cvc} onChange={form.onCVCChange} />
+        <input value={form.cvc} onChange={form.onCVCChange} placeholder={'CVC'} />
       </CVC>
       <CardNumber>
         <input
