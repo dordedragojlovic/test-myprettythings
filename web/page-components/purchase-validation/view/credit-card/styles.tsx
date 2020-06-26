@@ -7,15 +7,15 @@ export const Container = styled.div`
   width: 420px;
   height: 235px;
   border-radius: 20px;
-  background-color: #D6D6D6;
+  background-color: #d6d6d6;
   padding: 30px 50px;
 `;
 
 export const CVC = styled.div`
   display: flex;
   width: 100%;
-  input{
-    background: #FDB52E;
+  input {
+    background: #fdb52e;
     border: none;
     border-radius: 10px;
     width: 75px;
@@ -23,6 +23,11 @@ export const CVC = styled.div`
     text-align: center;
     font-weight: 500;
     font-size: 30px;
+
+    ::placeholder {
+      color: white;
+      opacity: 0.3;
+    }
   }
 `;
 
@@ -30,7 +35,7 @@ export const CardNumber = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  input{
+  input {
     width: 75px;
     height: 40px;
     border: 0;
@@ -44,5 +49,3 @@ export const CardNumber = styled.div`
     }
   }
 `;
-
-
