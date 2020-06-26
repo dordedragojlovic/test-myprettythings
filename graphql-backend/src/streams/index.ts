@@ -1,7 +1,8 @@
 import { PubSub, withFilter } from 'graphql-subscriptions';
 import { PURCHASE_PAID } from './subscription-events';
+import { Streams } from '../types';
 const pubSub = new PubSub();
-const streams = {
+const streams: Streams = {
   purchasePaid: {
     name: PURCHASE_PAID,
     publish: (input: { paid: boolean; id: string }): void => {
