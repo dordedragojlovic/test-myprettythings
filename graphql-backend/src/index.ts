@@ -1,5 +1,5 @@
 import { ApolloServer } from 'apollo-server';
-import typeDefs from './types';
+import schema from './schema';
 import resolversFactory from './resolvers';
 
 import repositoriesFactory from './repositories';
@@ -7,7 +7,7 @@ import database from './database';
 import CONFIG from './config';
 
 const server = new ApolloServer({
-  typeDefs: typeDefs,
+  typeDefs: schema,
   resolvers: resolversFactory(repositoriesFactory(database)),
 });
 
