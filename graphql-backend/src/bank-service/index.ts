@@ -10,7 +10,8 @@ import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import CONFIG from '../config';
 import { Observable } from 'zen-observable-ts';
 import fetch from 'isomorphic-fetch';
-import { BankService } from '../resolvers/types';
+import { BankService } from '../types';
+import { paidFromFetchResult } from './helpers';
 
 function paymentObservableFactory(
   createSubscriptionObservable: (
@@ -19,13 +20,13 @@ function paymentObservableFactory(
     variables: Record<string, unknown>,
   ) => Observable<FetchResult>,
   config = CONFIG,
-): (paymentId: string, paymentInfo: PaymentInfo) => Observable<FetchResult> {
+): (paymentId: string, paymentInfo: PaymentInfo) => Observable<boolean> {
   return (paymentId: string, paymentInfo: PaymentInfo) => {
     if (paymentInfo.bank !== Banks.MyOkayCash) {
       throw new Error('Unsupported bank!');
     }
 
-    return createSubscriptionObservable(
+    const subscriptionObservable = createSubscriptionObservable(
       config.MY_OKAY_CASH_WS_API_URL,
       gql`
         subscription($id: ID!) {
@@ -34,13 +35,15 @@ function paymentObservableFactory(
       `,
       { id: paymentId },
     );
+
+    return Observable.from(subscriptionObservable).map(paidFromFetchResult);
   };
 }
 
 function postPaymentFactory(
   client: ApolloClient<NormalizedCacheObject>,
-): (paymentInfo: PaymentInfo) => Promise<{ id: string; confirmed: boolean }> {
-  return async (paymentInfo: PaymentInfo) => {
+): (paymentInfo: PaymentInfo, amount: number, currency: string) => Promise<{ id: string; confirmed: boolean }> {
+  return async (paymentInfo: PaymentInfo, amount: number, currency: string) => {
     if (paymentInfo.bank !== Banks.MyOkayCash) {
       return Promise.reject('Unsupported bank');
     }
@@ -49,8 +52,8 @@ function postPaymentFactory(
       await client.mutate({
         variables: {
           input: {
-            amount: 300,
-            currency: 'NOK',
+            amount,
+            currency,
             cardNumber: paymentInfo.cardNumber,
             validity: paymentInfo.validity,
             cvc: paymentInfo.cvc,

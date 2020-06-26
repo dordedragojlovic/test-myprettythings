@@ -1,7 +1,7 @@
 import defaultDB from '../database';
 import { PURCHASES } from '../database/collections';
 import { PurchaseInput, PurchaseItem, PurchaseStatus } from 'generated/graphql-types';
-import { PurchaseRepository } from '../resolvers/types';
+import { PurchaseRepository } from '../types';
 
 function mapToPurchase(document: {
   $loki: number;

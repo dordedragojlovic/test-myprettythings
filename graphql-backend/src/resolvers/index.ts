@@ -2,10 +2,9 @@ import database from '../database';
 import repositoriesFactory from '../repositories';
 import { Resolvers } from '../generated/graphql-types';
 import bankServiceFactory from '../bank-service';
-import { makePromise } from 'apollo-link';
-import { BankService, Repositories } from './types';
 import STREAMS from '../streams';
 import CONFIG from '../config';
+import { BankService, Repositories } from '../types';
 
 export default (
   repositories: Repositories = repositoriesFactory(database),
@@ -17,7 +16,7 @@ export default (
   },
   Mutation: {
     createPurchase: async (_, variables) => {
-      const paymentStatus = await bankService.postPayment(variables.purchase.paymentInfo);
+      const paymentStatus = await bankService.postPayment(variables.purchase.paymentInfo, 123, 'USD');
       const purchase = repositories.purchase.createPurchase(
         variables.purchase,
         paymentStatus.id,
@@ -30,10 +29,7 @@ export default (
       }
 
       const purchasePaidObservable = bankService.getPaymentObservable(paymentStatus.id, variables.purchase.paymentInfo);
-      makePromise(purchasePaidObservable).then((response) => {
-        const paid = (
-          (response || { data: { paymentConfirmSuccessful: false } }).data || { paymentConfirmSuccessful: false }
-        ).paymentConfirmSuccessful;
+      purchasePaidObservable.subscribe((paid) => {
         repositories.purchase.updatePurchase(purchase.id, { ...purchase, paid });
         streams.purchasePaid.publish({ paid: paid, id: purchase.id });
       });
