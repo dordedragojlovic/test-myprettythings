@@ -57,6 +57,7 @@ function postPaymentFactory(
             cardNumber: paymentInfo.cardNumber,
             validity: paymentInfo.validity,
             cvc: paymentInfo.cvc,
+            source: 'PrettyThings',
           },
         },
         mutation: gql`
