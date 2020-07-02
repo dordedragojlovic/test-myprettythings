@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { responsive } from 'pages/styles/responsive';
 
 export const PageContainer = styled.div`
   height: 100%;
@@ -29,6 +30,12 @@ export const OrderList = styled.div`
     line-height: 31px;
     color: #1F2A3F;
   }
+
+  p:last-of-type{
+      ${responsive.sm} {
+        margin-top: 0;
+      }
+    }
 `;
 
 export const OrderDetails = styled.div`
@@ -70,6 +77,10 @@ export const Text = styled.div`
     line-height: 62px;
     color: #1F2A3F;
     margin: 50px 0 0 0;
+    ${responsive.sm} {
+      font-size: 47px;
+      line-height: 55px;
+    }
   }
 
   h5{
@@ -83,4 +94,14 @@ export const Text = styled.div`
 
 export const CardContainer = styled.div`
   width: 15%;
+
+  ${responsive.sm} {
+    width: 37%;
+  }
+  ${responsive.md} {
+    width: 37%;
+  }
+  ${responsive.iPadPro} {
+    width: 37%;
+  }
 `;

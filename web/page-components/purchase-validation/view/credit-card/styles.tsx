@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { responsive } from 'pages/styles/responsive';
 
 export const Container = styled.div`
   display: flex;
@@ -9,6 +10,13 @@ export const Container = styled.div`
   border-radius: 20px;
   background-color: #d6d6d6;
   padding: 30px 50px;
+
+  ${responsive.sm} {
+    margin-bottom: 60px;
+  }
+  ${responsive.md} {
+    margin-bottom: 60px;
+  }
 `;
 
 export const CVC = styled.div`
