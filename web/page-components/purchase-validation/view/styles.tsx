@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { responsive } from 'pages/styles/responsive';
+import { responsive } from 'components/styles/responsive';
 
 export const PageContainer = styled.div`
   height: 100%;
