@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { responsive } from 'pages/styles/responsive';
 
 export const PageContainer = styled.div`
   height: 100%;
@@ -6,6 +7,20 @@ export const PageContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 150px 150px 0 150px;
+
+  ${responsive.sm} {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 150px 0 150px;
+  }
+
+  ${responsive.md} {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 150px 0 150px;
+  }
 
   div {
     text-align: center;
