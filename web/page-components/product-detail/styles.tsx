@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { responsive } from 'pages/styles/responsive';
+
 
 export const PageContainer = styled.div`
   height: 100%;
@@ -6,6 +8,19 @@ export const PageContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 0 150px;
+
+  ${responsive.sm} {
+      flex-direction: column;
+      padding: 100px 60px;
+    }
+
+  ${responsive.md} {
+    padding: 50px 60px;
+  }
+
+  ${responsive.iPadPro} {
+      padding: 150px 10px;
+    }
 `;
 
 export const Title = styled.div`
@@ -22,6 +37,9 @@ export const CardWrapper = styled.div`
   div{
     margin: 0 auto;
   }
+  ${responsive.sm} {
+      width: 100%;
+    }
 `;
 
 export const ContentWrapper = styled.div`
@@ -30,6 +48,10 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   justify-content: end;
   padding: 90px 0;
+
+  ${responsive.sm} {
+      width: 100%;
+    }
 `;
 
 export const Text = styled.div`
