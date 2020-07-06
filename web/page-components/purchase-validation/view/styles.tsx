@@ -6,20 +6,20 @@ export const PageContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 150px 150px 0 150px;
+  padding: 80px 150px 50px 150px;
 
   ${responsive.sm} {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 80px 150px 0 150px;
+    padding: 80px 150px 50px 150px;
   }
 
   ${responsive.md} {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 100px 150px 0 150px;
+    padding: 100px 150px 50px 150px;
   }
 
   div {
@@ -58,4 +58,50 @@ export const PageContainer = styled.div`
       opacity: 0.5;
     }
   }
+`;
+
+export const OrderWrapper = styled.div`
+    padding: 0 150px;
+
+    h3{
+      margin: 0;
+    }
+`;
+
+export const OrderList = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 10px 0 0 0;
+  margin-top: 10px;
+  border-top: 1.32709px solid #E1E1E1;
+  border-bottom: 1.32709px solid #E1E1E1;
+  justify-content: space-between;
+
+  p{
+    font-size: 20px;
+    line-height: 42px;
+    color: #1F2A3F;
+  }
+`;
+
+export const CardContainer = styled.div`
+  width: 12%;
+
+
+  ${responsive.sm} {
+    width: 25%;
+  }
+  ${responsive.md} {
+    width: 20%;
+  }
+  ${responsive.iPadPro} {
+    width: 20%;
+  }
+`;
+
+export const Item = styled.div`
+  width: 50%;
+  height: 90px;
+  display: flex;
+  justify-content: start;
 `;
