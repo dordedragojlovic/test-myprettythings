@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { responsive } from 'components/styles/responsive';
 
 export const PopupWrapper = styled.div`
   position: fixed;
@@ -14,8 +15,8 @@ export const PopupWrapper = styled.div`
 
 export const PopupWindow = styled.div`
   position: absolute;
-  left: 22%;
-  right: 25%;
+  left: 5%;
+  right: 5%;
   top: 25%;
   bottom: 25%;
   margin: auto;
@@ -30,4 +31,20 @@ export const PopupWindow = styled.div`
   border-radius: 31px;
   width: 860px;
   height: 460px;
+
+  ${responsive.xs} {
+    left: 2%;
+    right: 2%;
+    width: 350px;
+    height: 430px;
+  }
+
+  ${responsive.sm} {
+    left: 2%;
+    right: 2%;
+    width: 640px;
+    height: 430px;
+  }
+
+
 `;

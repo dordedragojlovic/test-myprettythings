@@ -14,10 +14,11 @@ const CreditCard = ({ form }: { form: FormStateHandler }) => {
   return (
     <Container>
       <CVC>
-        <input value={form.cvc} onChange={form.onCVCChange} placeholder={'CVC'} />
+        <input value={form.cvc} onChange={form.onCVCChange} placeholder={'CVC'} type="password"/>
       </CVC>
       <CardNumber>
         <input
+          type="password"
           ref={firstInputRef}
           placeholder={'....'}
           value={form.cardNumber.slice(0, 4)}
@@ -30,6 +31,7 @@ const CreditCard = ({ form }: { form: FormStateHandler }) => {
           }}
         />
         <input
+          type="password"
           ref={secondInputRef}
           placeholder={'....'}
           onKeyDown={(event) => {
@@ -47,6 +49,7 @@ const CreditCard = ({ form }: { form: FormStateHandler }) => {
           }}
         />
         <input
+          type="password"
           placeholder={'....'}
           ref={thirdInputRef}
           onKeyDown={(event) => {
@@ -64,6 +67,7 @@ const CreditCard = ({ form }: { form: FormStateHandler }) => {
           }}
         />
         <input
+          type="password"
           ref={fourthInputRef}
           onKeyDown={(event) => {
             if (event.keyCode === 8 && fourthValue === '') {
