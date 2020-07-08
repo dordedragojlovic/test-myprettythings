@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { responsive } from 'components/styles/responsive';
 
 export const Container = styled.div`
   display: flex;
@@ -19,6 +20,10 @@ export const Text = styled.div`
   line-height: 64px;
   text-align: center;
   color: #FFFFFF;
+
+  ${responsive.xs} {
+    font-size: 35px;
+  }
 `;
 
 export const ImageContainer = styled.div`

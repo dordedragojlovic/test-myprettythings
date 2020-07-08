@@ -50,6 +50,7 @@ export const CardNumber = styled.div`
     border-radius: 10px;
     font-weight: 500;
     font-size: 30px;
+    text-align: center;
     ::placeholder {
       font-size: 32px;
       font-weight: 500;
