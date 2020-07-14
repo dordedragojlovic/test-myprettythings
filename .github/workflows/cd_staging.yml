@@ -1,9 +1,12 @@
-name: Continuous Delivery
+name: Staging Continuous Delivery
 
 on:
   push:
     branches:
       - develop
+
+env:
+  HEROKU_BACKEND_APP_NAME: prettythings-backend
 
 jobs:
   build_push_backend:
@@ -20,7 +23,9 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           cd graphql-backend
-          heroku container:push -a prettythings-backend web
+          docker build -t demo-myokaycash-backend -f Dockerfile.heroku .
+          docker tag demo-myokaycash-backend registry.heroku.com/$HEROKU_BACKEND_APP_NAME/web
+          docker push registry.heroku.com/$HEROKU_BACKEND_APP_NAME/web
   build_push_web:
     name: Build and Push Web Container
     runs-on: ubuntu-latest
@@ -53,4 +58,4 @@ jobs:
       - name: Release backend
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release -a prettythings-backend web
+        run: heroku container:release -a $HEROKU_BACKEND_APP_NAME web

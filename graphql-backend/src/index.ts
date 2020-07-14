@@ -14,4 +14,5 @@ const server = new ApolloServer({
 server.listen({ port: CONFIG.PORT }).then(({ url, subscriptionsUrl }: { url: string; subscriptionsUrl: string }) => {
   console.log(`🚀 Server ready at ${url}`);
   console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
+  console.log(`🚀 Health check ready at ${url}.well-known/apollo/server-health`);
 });
