@@ -36,6 +36,10 @@ export default (
 
       return purchase;
     },
+    reset: () => {
+      repositories.purchase.reset();
+      return true;
+    },
   },
   Subscription: {
     purchasePaid: streams.purchasePaid.resolver,

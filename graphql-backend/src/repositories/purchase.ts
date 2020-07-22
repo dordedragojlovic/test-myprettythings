@@ -31,9 +31,14 @@ export default function purchaseRepositoryFactory(database = defaultDB): Purchas
     return mapToPurchase(result);
   }
 
+  function reset() {
+    PURCHASES_COLLECTION.clear();
+  }
+
   return {
     createPurchase,
     get,
     updatePurchase,
+    reset,
   };
 }

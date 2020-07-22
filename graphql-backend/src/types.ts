@@ -18,6 +18,7 @@ export type PurchaseRepository = {
   get: (id: string) => PurchaseStatus;
   createPurchase: (purchase: PurchaseInput, paymentId: string, paid: boolean) => PurchaseStatus;
   updatePurchase: (id: string, fieldsToUpdate: { paid: boolean; confirmed: boolean }) => PurchaseStatus;
+  reset: () => void;
 };
 
 export type BankService = {

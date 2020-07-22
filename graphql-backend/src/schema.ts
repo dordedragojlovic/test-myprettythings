@@ -7,6 +7,7 @@ export default gql`
 
   type Mutation {
     createPurchase(purchase: PurchaseInput!): PurchaseStatus!
+    reset: Boolean!
   }
 
   type Subscription {
