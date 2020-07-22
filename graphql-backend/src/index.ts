@@ -9,6 +9,7 @@ import CONFIG from './config';
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers: resolversFactory(repositoriesFactory(database)),
+  debug: false,
 });
 
 server.listen({ port: CONFIG.PORT }).then(({ url, subscriptionsUrl }: { url: string; subscriptionsUrl: string }) => {
