@@ -2,12 +2,12 @@ import { gql } from 'apollo-server';
 
 export default gql`
   type Query {
-    purchase(id: ID!): PurchaseStatus!
+    purchase(id: ID!): PurchaseStatus
   }
 
   type Mutation {
-    createPurchase(purchase: PurchaseInput!): PurchaseStatus!
-    reset: Boolean!
+    createPurchase(purchase: PurchaseInput!): PurchaseStatus
+    reset: Boolean
   }
 
   type Subscription {
