@@ -7,6 +7,7 @@ on:
 
 env:
   HEROKU_BACKEND_APP_NAME: prettythings-backend
+  HEROKU_WEB_APP_NAME: prettythings-web
 
 jobs:
   build_push_backend:
@@ -23,8 +24,8 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           cd graphql-backend
-          docker build -t demo-myokaycash-backend -f Dockerfile.heroku .
-          docker tag demo-myokaycash-backend registry.heroku.com/$HEROKU_BACKEND_APP_NAME/web
+          docker build -t demo-prettythings-backend -f Dockerfile.heroku .
+          docker tag demo-prettythings-backend registry.heroku.com/$HEROKU_BACKEND_APP_NAME/web
           docker push registry.heroku.com/$HEROKU_BACKEND_APP_NAME/web
   build_push_web:
     name: Build and Push Web Container
@@ -40,7 +41,9 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           cd web
-          heroku container:push -a prettythings-web web
+          docker build -t demo-prettythings-web -f Dockerfile.heroku .
+          docker tag demo-prettythings-web registry.heroku.com/$HEROKU_WEB_APP_NAME/web
+          docker push registry.heroku.com/$HEROKU_WEB_APP_NAME/web
   release_both:
     name: Release Web and Backend Container
     runs-on: ubuntu-latest
@@ -54,7 +57,7 @@ jobs:
       - name: Release web
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release -a prettythings-web web
+        run: heroku container:release -a $HEROKU_WEB_APP_NAME web
       - name: Release backend
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
