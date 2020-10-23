@@ -8,5 +8,4 @@ COPY components ./components/
 COPY package.json yarn.lock tsconfig.json  ./
 RUN yarn install
 RUN yarn run build
-EXPOSE 3000
-CMD ["yarn","start"]
+CMD ["sh", "-c", "yarn start --port $PORT"]

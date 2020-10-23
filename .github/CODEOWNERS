@@ -1,0 +1,3 @@
+# To prevent unwanted infrastructure changes that can bring extra costs
+/.github/workflows/** @HormCodes
+/**.tf @HormCodes
