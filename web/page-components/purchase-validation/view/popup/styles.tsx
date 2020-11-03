@@ -30,20 +30,17 @@ export const PopupWindow = styled.div`
   background: #1F2A3F;
   border-radius: 31px;
   width: 860px;
-  height: 460px;
 
   ${responsive.xs} {
     left: 2%;
     right: 2%;
     width: 350px;
-    height: 430px;
   }
 
   ${responsive.sm} {
     left: 2%;
     right: 2%;
     width: 640px;
-    height: 430px;
   }
 
 

@@ -16,13 +16,16 @@ export const Logo = styled.div`
 
 export const Text = styled.div`
   font-weight: 900;
-  font-size: 55px;
+  font-size: ${p => p.type === 'app' ? '55px' : '29px'};
+  margin: ${p => p.type === 'app' ? '0 0 40px 0' : '52px'};
   line-height: 64px;
   text-align: center;
   color: #FFFFFF;
 
   ${responsive.xs} {
-    font-size: 35px;
+    font-size: ${p => p.type === 'app' ? '35px' : '29px'};
+    margin: ${p => p.type === 'app' ? '0 0 40px 0' : '40px 0'};
+    line-height: 40px
   }
 `;
 

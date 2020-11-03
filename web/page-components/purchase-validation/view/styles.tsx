@@ -32,7 +32,7 @@ export const PageContainer = styled.div`
     font-size: 67.5865px;
     line-height: 79px;
     color: #1f2a3f;
-    margin: 0 0 50px 0;
+    margin: 0 0 20px 0;
   }
 
   h5 {
@@ -44,15 +44,24 @@ export const PageContainer = styled.div`
   }
 
   button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #e0a45d;
     border-radius: 41px;
     border: 0;
     height: 70px;
     width: 233px;
+    margin: 0 5px;
     font-weight: 900;
-    font-size: 25px;
+    font-size: 17px;
     line-height: 29px;
     color: #ffffff;
+    box-shadow: -4px 6px 5px 0px #cccccc;
+
+    p{
+      margin: 0;
+    }
 
     :disabled {
       opacity: 0.5;
@@ -105,3 +114,9 @@ export const Item = styled.div`
   display: flex;
   justify-content: start;
 `;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+
+`;
+

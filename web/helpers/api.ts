@@ -23,20 +23,20 @@ const createSubscriptionObservable = (query: DocumentNode, variables: Record<str
 
 async function createPurchase(
   items = [],
-  { cardNumber, cvc, validity = '10/30' },
-): Promise<{ id: string; paid: boolean }> {
+  { cardNumber, cvc, validity = '10/30', authType },
+): Promise<{ id: string; confirmed: boolean }> {
   return (
     await client.mutate({
       mutation: gql`
-        mutation($purchase: PurchaseInput!) {
-          createPurchase(purchase: $purchase) {
-            id
-            paid
-          }
+      mutation($purchase: PurchaseInput!) {
+        createPurchase(purchase: $purchase) {
+          id
+          paid
         }
+      }
       `,
       variables: {
-        purchase: { items, paymentInfo: { cardNumber, cvc, validity, bank: 'MyOkayCash' } },
+        purchase: { items, paymentInfo: { cardNumber, cvc, validity, bank: 'MyOkayCash', authType } },
       },
     })
   ).data.createPurchase;

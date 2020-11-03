@@ -4,6 +4,7 @@ import { FormStateHandler, CardInfo } from './types';
 import PurchaseValidationView from './view';
 import dataProvider from './data-provider';
 import { useRouter } from 'next/router';
+import onError from 'components/warning/on-error';
 
 function useForm(configuration: { initialValues: CardInfo; onSubmit: (values: CardInfo) => void }): FormStateHandler {
   const form = useFormik<CardInfo>({
@@ -39,27 +40,53 @@ function useForm(configuration: { initialValues: CardInfo; onSubmit: (values: Ca
 
 function PurchaseValidation() {
   const [waitingForPayment, setWaitingForPayment] = useState(false);
+  const [validateWith, setValidateWith] = useState('app');
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  function closeWarning() {
+    setError('');
+  }
+
+  function clearAlert(timer) {
+    clearTimeout(timer);
+  }
+
   const form = useForm({
     initialValues: { cvc: '', cardNumber: '' },
     onSubmit: async (values) => {
       try {
         setWaitingForPayment(true);
-        const response = await dataProvider.validate(values);
+
+        if(validateWith === 'PhoneCall'){
+            const redirect = setTimeout( async () => {
+              window.open('https://myokaycash.okaythis.com/auth', '_blank');
+              clearAlert(redirect);
+            }, 3000);
+          }
+        
+        const response = await dataProvider.validate(values, validateWith);
+          
         const observable = dataProvider.wasPaid(response.id);
         observable.subscribe((value) => {
           setWaitingForPayment(false);
           router.push('/purchase-complete');
         });
+
       } catch (error) {
         setWaitingForPayment(false);
         console.log(error);
-        console.log('Something went wrong...');
+        onError(error.message, setError, setLoading);
       }
-    },
+    }
   });
 
-  return <PurchaseValidationView form={form} waitingForPayment={waitingForPayment} />;
+  const setValidationType = (e) => {
+    setValidateWith(e.currentTarget.id) 
+  }
+
+  return <PurchaseValidationView form={form} waitingForPayment={waitingForPayment} type={validateWith} callback={setValidationType} errorMessage={error} closeWarning={closeWarning}/>;
 }
 
 export default PurchaseValidation;

@@ -1,12 +1,12 @@
 import React from 'react';
 import { PopupWindow, PopupWrapper } from './styles';
-import PhoneCheck from './phone-check';
+import PopupBody from './phone-check';
 
-function Popup() {
+function Popup({type}:{type: string}) {
   return (
     <PopupWrapper>
       <PopupWindow>
-        <PhoneCheck />
+        <PopupBody type={type}/>
       </PopupWindow>
     </PopupWrapper>
   );
