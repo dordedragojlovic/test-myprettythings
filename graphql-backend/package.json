@@ -19,7 +19,7 @@
     "apollo-link-http": "^1.5.17",
     "apollo-link-ws": "^1.0.20",
     "apollo-server": "^2.15.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "graphql": "^15.1.0",
     "isomorphic-fetch": "^2.2.1",
     "lokijs": "^1.5.8",
