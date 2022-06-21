@@ -18,7 +18,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "apollo-link-ws": "^1.0.20",
-    "apollo-server": "^2.15.0",
+    "apollo-server": "^3.0.0",
     "dotenv": "^8.2.0",
     "graphql": "^15.1.0",
     "isomorphic-fetch": "^2.2.1",
