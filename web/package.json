@@ -26,7 +26,7 @@
     "react-dom": "16.13.1",
     "styled-components": "^5.1.1",
     "subscriptions-transport-ws": "^0.9.16",
-    "ws": "^7.3.0"
+    "ws": "^8.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
